@@ -1,7 +1,6 @@
 package com.syscom.event;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,25 +11,19 @@ import lombok.ToString;
 
 @Data
 @Builder
-@ToString(exclude = { "password" })
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode(exclude = { "password" })
-public class UserEvent implements Serializable {
+@EqualsAndHashCode
+public class CategoryEvent implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String name;
+	private String code;
 
-	private String firstName;
-
-	private String login;
-
-	private String password;
-
-	private LocalDate birthDay;
+	private String libelle;
 
 }

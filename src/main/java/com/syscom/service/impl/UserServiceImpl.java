@@ -22,13 +22,13 @@ import com.syscom.service.UserService;
 public class UserServiceImpl implements UserService {
 
 	private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
-	
+
 	@Autowired
 	private UserDao userDao;
 
 	@Override
 	public void create(User user) {
-		logger.info("Création de l'tilisateur {}", user);
+		logger.info("Création de l'utilisateur {}", user);
 		Assert.notNull(user, "User must not be null");
 		userDao.save(user);
 	}
