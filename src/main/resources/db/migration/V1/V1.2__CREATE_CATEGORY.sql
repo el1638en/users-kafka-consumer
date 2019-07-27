@@ -13,7 +13,6 @@ COMMENT ON COLUMN T_CATEGORY.C_ID IS 'ID d''une categorie';
 COMMENT ON COLUMN T_CATEGORY.C_CODE IS 'Code categorie';
 COMMENT ON COLUMN T_CATEGORY.C_LIBELLE IS 'Libelle categorie';
 
-
 -- Création d'une sequence pour gérer les identifiants techniques des utilisateurs
 CREATE SEQUENCE CATEGORY_SEQ
   INCREMENT 1

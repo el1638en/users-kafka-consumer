@@ -1,4 +1,4 @@
-package com.syscom.event;
+package com.syscom.event.user;
 
 import java.io.Serializable;
 
@@ -15,15 +15,13 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CategoryEvent implements Serializable {
+public class UserDeletedEvent implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private String code;
-
-	private String libelle;
+	private String login;
 
 }

@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.syscom.beans.User;
-import com.syscom.dao.UserDao;
+import com.syscom.repository.UserRepository;
 import com.syscom.service.UserService;
 
 /**
@@ -24,19 +24,19 @@ public class UserServiceImpl implements UserService {
 	private final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
 	@Autowired
-	private UserDao userDao;
+	private UserRepository userRepository;
 
 	@Override
 	public void create(User user) {
 		logger.info("Création de l'utilisateur {}", user);
 		Assert.notNull(user, "User must not be null");
-		userDao.save(user);
+		userRepository.save(user);
 	}
 
 	@Override
 	public User findByLogin(String login) {
 		Assert.notNull(login, "Login must not be null.");
-		return userDao.findByLogin(upperCase(login));
+		return userRepository.findByLogin(upperCase(login));
 	}
 
 }

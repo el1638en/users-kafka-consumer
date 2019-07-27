@@ -1,4 +1,4 @@
-package com.syscom.event;
+package com.syscom.event.user;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = { "password" })
-public class UserEvent implements Serializable {
+public class UserCreatedEvent implements Serializable {
 
 	/**
 	 * 
