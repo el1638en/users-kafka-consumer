@@ -5,10 +5,15 @@ import com.syscom.beans.Category;
 public interface CategoryService {
 
 	/**
-	 * Création d'une categorie.
+	 * Création/Modification d'une categorie.
 	 * 
 	 */
-	void create(Category category);
+	void upsert(Category category);
 
-
+	/**
+	 * Suppression d'une catégorie
+	 * 
+	 * @param code
+	 */
+	void delete(String code);
 }

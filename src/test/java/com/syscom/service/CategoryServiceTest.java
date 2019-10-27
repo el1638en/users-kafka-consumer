@@ -36,27 +36,38 @@ public class CategoryServiceTest extends AbstractTest {
 	}
 
 	@Test
-	public void whenCreateNullCategoryThenThrowException() throws Exception {
+	public void whenCreateNullCategoryThenThrowException() {
 		// GIVEN
 		exceptionRule.expect(IllegalArgumentException.class);
 
 		// WHEN
-		categoryService.create(null);
+		categoryService.upsert(null);
 
 		// THEN
 		verifyZeroInteractions(categoryRepository);
 	}
 
 	@Test
-	public void testCreateCategory() throws Exception {
+	public void testCreateCategory() {
 		// GIVEN
 		category.setCode("NEW_CODE");
 
 		// WHEN
-		categoryService.create(category);
+		categoryService.upsert(category);
 
 		// THEN
 		verify(categoryRepository, times(1)).save(category);
 	}
 
+	@Test
+	public void testDeleteCategory() {
+		// GIVEN
+		categoryRepository.save(category);
+
+		// WHEN
+		categoryService.delete("CODE");
+
+		// THEN
+		verify(categoryRepository, times(1)).delete(category);
+	}
 }

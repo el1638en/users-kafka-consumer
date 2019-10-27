@@ -27,16 +27,35 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepository;
 
 	@Override
-	public void create(User user) {
-		logger.info("Création de l'utilisateur {}", user);
+	public void upsert(User user) {
+		logger.info("Création/Modification de l'utilisateur {}", user);
 		Assert.notNull(user, "User must not be null");
-		userRepository.save(user);
+		User findUser = userRepository.findByLogin(user.getLogin());
+		if (findUser == null) {
+			userRepository.save(user);
+			logger.info("Création réussie de l'utilisateur {}", user);
+		} else {
+			findUser.setBirthDay(user.getBirthDay());
+			findUser.setName(user.getName());
+			findUser.setFirstName(user.getFirstName());
+			findUser.setPassword(user.getPassword());
+			userRepository.save(findUser);
+			logger.info("Modification réussie de l'utilisateur {}", user);
+
+		}
+
 	}
 
 	@Override
 	public User findByLogin(String login) {
 		Assert.notNull(login, "Login must not be null.");
 		return userRepository.findByLogin(upperCase(login));
+	}
+
+	@Override
+	public void delete(String login) {
+		Assert.notNull(login, "Login must not be null.");
+		userRepository.deleteByLogin(login);
 	}
 
 }

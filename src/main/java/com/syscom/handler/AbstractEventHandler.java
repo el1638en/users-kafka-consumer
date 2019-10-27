@@ -10,7 +10,7 @@ public abstract class AbstractEventHandler<T> {
 
 	private final Logger logger = LoggerFactory.getLogger(AbstractEventHandler.class);
 
-	public void process(T event) {
+	public void handleEvent(T event) {
 		LocalDateTime start = LocalDateTime.now();
 		logger.info("Receive event kafka : {} {}", event, event.getClass());
 		processEvent(event);

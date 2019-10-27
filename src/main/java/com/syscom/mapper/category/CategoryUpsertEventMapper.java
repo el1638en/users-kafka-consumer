@@ -5,12 +5,12 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 import com.syscom.beans.Category;
-import com.syscom.event.category.CategoryCreatedEvent;
+import com.syscom.event.category.CategoryUpsertEvent;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.ERROR)
-public interface CategoryCreatedEventMapper {
+public interface CategoryUpsertEventMapper {
 
 	@Mapping(target = "id", ignore = true)
-	Category eventToBean(CategoryCreatedEvent categoryCreatedEvent);
+	Category eventToBean(CategoryUpsertEvent categoryUpsertEvent);
 
 }

@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import com.syscom.handler.category.CategoryCreatedEventHandler;
-import com.syscom.handler.user.UserCreatedEventHandler;
+import com.syscom.handler.category.CategoryUpsertEventHandler;
+import com.syscom.handler.user.UserUpsertEventHandler;
 
 @Configuration
 @EntityScan(basePackages = "com.syscom.beans")
@@ -18,9 +18,9 @@ import com.syscom.handler.user.UserCreatedEventHandler;
 public class TestConfiguration {
 
 	@MockBean
-	private CategoryCreatedEventHandler categoryCreatedEventHandler;
+	private CategoryUpsertEventHandler categoryCreatedEventHandler;
 
 	@MockBean
-	private UserCreatedEventHandler userCreatedEventHandler;
+	private UserUpsertEventHandler userCreatedEventHandler;
 
 }

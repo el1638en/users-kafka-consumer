@@ -16,7 +16,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(exclude = { "password" })
-public class UserCreatedEvent implements Serializable {
+public class UserUpsertEvent implements Serializable {
 
 	/**
 	 * 

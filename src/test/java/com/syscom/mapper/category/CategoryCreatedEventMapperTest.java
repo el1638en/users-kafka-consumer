@@ -9,20 +9,20 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.syscom.beans.Category;
-import com.syscom.event.category.CategoryCreatedEvent;
+import com.syscom.event.category.CategoryUpsertEvent;
 
 @RunWith(SpringRunner.class)
-@Import(value = { CategoryCreatedEventMapperImpl.class })
+@Import(value = { CategoryUpsertEventMapperImpl.class })
 public class CategoryCreatedEventMapperTest {
 
 	@Autowired
-	private CategoryCreatedEventMapper categoryCreatedEventMapper;
+	private CategoryUpsertEventMapper categoryCreatedEventMapper;
 
 	@Test
 	public void testEventToBean() throws Exception {
 		// GIVEN
 
-		CategoryCreatedEvent categoryCreatedEvent = new CategoryCreatedEvent();
+		CategoryUpsertEvent categoryCreatedEvent = new CategoryUpsertEvent();
 		categoryCreatedEvent.setCode("code");
 		categoryCreatedEvent.setLibelle("libelle");
 

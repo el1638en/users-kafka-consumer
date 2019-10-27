@@ -25,10 +25,17 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository categoryRepository;
 
 	@Override
-	public void create(Category category) {
+	public void upsert(Category category) {
 		logger.info("Création de la categorie {}", category);
 		Assert.notNull(category, "Category must not be null");
 		categoryRepository.save(category);
+	}
+
+	@Override
+	public void delete(String code) {
+		logger.info("Suppression de la categorie ayant pour code {}", code);
+		Assert.notNull(code, "Code must not be null");
+		categoryRepository.deleteByCode(code);
 	}
 
 }

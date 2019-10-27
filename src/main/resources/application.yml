@@ -17,11 +17,11 @@ spring.jpa.show-sql: true
 spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
 spring.kafka.consumer.bootstrap-servers: localhost:9092
 spring.kafka.consumer.properties.spring.json.trusted.packages: '*'
-spring.kafka.consumer.topic.user.created: users-created
+spring.kafka.consumer.topic.user.upsert: users-upsert
+spring.kafka.consumer.group.user.upsert: users-upsert-group-id
 spring.kafka.consumer.topic.user.deleted: users-deleted
-spring.kafka.consumer.topic.category.created: category-created
-spring.kafka.consumer.topic.category.deleted: category-deleted
-spring.kafka.consumer.group.user.created: users-created-group-id
 spring.kafka.consumer.group.user.deleted: users-deleted-group-id
-spring.kafka.consumer.group.category.created: category-created-group-id
+spring.kafka.consumer.topic.category.upsert: category-upsert
+spring.kafka.consumer.group.category.upsert: category-upsert-group-id
+spring.kafka.consumer.topic.category.deleted: category-deleted
 spring.kafka.consumer.group.category.deleted: category-deleted-group-id

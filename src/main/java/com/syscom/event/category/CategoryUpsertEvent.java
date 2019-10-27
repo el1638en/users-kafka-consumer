@@ -15,7 +15,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode
-public class CategoryCreatedEvent implements Serializable {
+public class CategoryUpsertEvent implements Serializable {
 
 	/**
 	 * 

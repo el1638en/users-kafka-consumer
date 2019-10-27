@@ -18,7 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import com.syscom.AbstractTest;
 import com.syscom.beans.User;
-import com.syscom.event.user.UserCreatedEvent;
+import com.syscom.event.user.UserUpsertEvent;
 import com.syscom.repository.UserRepository;
 
 public class UserServiceTest extends AbstractTest {
@@ -33,7 +33,7 @@ public class UserServiceTest extends AbstractTest {
 	private ArgumentCaptor<String> keyCaptor;
 
 	@Captor
-	private ArgumentCaptor<UserCreatedEvent> userEventCaptor;
+	private ArgumentCaptor<UserUpsertEvent> userEventCaptor;
 
 	@Rule
 	public ExpectedException exceptionRule = ExpectedException.none();
@@ -53,7 +53,7 @@ public class UserServiceTest extends AbstractTest {
 		exceptionRule.expect(IllegalArgumentException.class);
 
 		// WHEN
-		userService.create(null);
+		userService.upsert(null);
 
 		// THEN
 		verifyZeroInteractions(userRepository);
@@ -64,7 +64,7 @@ public class UserServiceTest extends AbstractTest {
 		// GIVEN
 
 		// WHEN
-		userService.create(user);
+		userService.upsert(user);
 
 		// THEN
 		verify(userRepository, times(1)).save(user);

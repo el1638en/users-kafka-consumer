@@ -11,19 +11,19 @@ import org.springframework.context.annotation.Import;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import com.syscom.beans.User;
-import com.syscom.event.user.UserCreatedEvent;
+import com.syscom.event.user.UserUpsertEvent;
 
 @RunWith(SpringRunner.class)
-@Import(value = { UserCreatedEventMapperImpl.class })
+@Import(value = { UserUpsertEventMapperImpl.class })
 public class UserCreatedEventMapperTest {
 
 	@Autowired
-	private UserCreatedEventMapper userCreatedEventMapper;
+	private UserUpsertEventMapper userUpsertEventMapper;
 
 	@Test
 	public void testEventToBean() throws Exception {
 		// GIVEN
-		UserCreatedEvent userCreatedEvent = new UserCreatedEvent();
+		UserUpsertEvent userCreatedEvent = new UserUpsertEvent();
 		userCreatedEvent.setBirthDay(LocalDate.now());
 		userCreatedEvent.setName("name");
 		userCreatedEvent.setFirstName("firstName");
@@ -31,7 +31,7 @@ public class UserCreatedEventMapperTest {
 		userCreatedEvent.setPassword("password");
 
 		// WHEN
-		User user = userCreatedEventMapper.eventToBean(userCreatedEvent);
+		User user = userUpsertEventMapper.eventToBean(userCreatedEvent);
 
 		// THEN
 		assertThat(user.getBirthDay()).isEqualTo(userCreatedEvent.getBirthDay());

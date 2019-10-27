@@ -14,10 +14,10 @@ import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import org.springframework.kafka.support.serializer.JsonSerializer;
 
-import com.syscom.event.category.CategoryCreatedEvent;
 import com.syscom.event.category.CategoryDeletedEvent;
-import com.syscom.event.user.UserCreatedEvent;
+import com.syscom.event.category.CategoryUpsertEvent;
 import com.syscom.event.user.UserDeletedEvent;
+import com.syscom.event.user.UserUpsertEvent;
 
 @Configuration
 public class EventHandlerConfig {
@@ -25,14 +25,14 @@ public class EventHandlerConfig {
 	@Value(value = "${spring.kafka.consumer.bootstrap-servers:localhost:9092}")
 	private String consumerBootStrapServers;
 
-	@Value(value = "${spring.kafka.consumer.group.user.created:users-created}")
-	private String userCreatedGroupId;
+	@Value(value = "${spring.kafka.consumer.group.user.upsert:users-upsert-group-id}")
+	private String userUpsertGroupId;
 
 	@Value(value = "${spring.kafka.consumer.group.user.deleted:user-deleted}")
 	private String userDeletedGroupId;
 
-	@Value(value = "${spring.kafka.consumer.group.category.created:category-created}")
-	private String categoryCreatedGroupId;
+	@Value(value = "${spring.kafka.consumer.group.category.upsert:category-upsert-group-id}")
+	private String categoryUpsertGroupId;
 
 	@Value(value = "${spring.kafka.consumer.group.category.deleted:category-deleted}")
 	private String categoryDeletedGroupId;
@@ -45,14 +45,14 @@ public class EventHandlerConfig {
 		return properties;
 	}
 
-	@Bean("userCreatedEventListenerContainerFactory")
-	public ConcurrentKafkaListenerContainerFactory<String, UserCreatedEvent> userCreatedEventListenerContainerFactory() {
+	@Bean("userUpsertEventListenerContainerFactory")
+	public ConcurrentKafkaListenerContainerFactory<String, UserUpsertEvent> userUpsertEventListenerContainerFactory() {
 		Map<String, Object> properties = getProperties();
-		properties.put(ConsumerConfig.GROUP_ID_CONFIG, userCreatedGroupId);
-		ConsumerFactory<String, UserCreatedEvent> userCreatedEventConsumerFactory = new DefaultKafkaConsumerFactory<>(
-				properties, new StringDeserializer(), new JsonDeserializerWithJTM<UserCreatedEvent>());
+		properties.put(ConsumerConfig.GROUP_ID_CONFIG, userUpsertGroupId);
+		ConsumerFactory<String, UserUpsertEvent> userCreatedEventConsumerFactory = new DefaultKafkaConsumerFactory<>(
+				properties, new StringDeserializer(), new JsonDeserializerWithJTM<UserUpsertEvent>());
 
-		ConcurrentKafkaListenerContainerFactory<String, UserCreatedEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		ConcurrentKafkaListenerContainerFactory<String, UserUpsertEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
 		factory.setConsumerFactory(userCreatedEventConsumerFactory);
 		return factory;
 	}
@@ -69,22 +69,22 @@ public class EventHandlerConfig {
 		return factory;
 	}
 
-	@Bean("categoryCreatedEventListenerContainerFactory")
-	public ConcurrentKafkaListenerContainerFactory<String, CategoryCreatedEvent> categoryCreatedEventListenerContainerFactory() {
+	@Bean("categoryUpsertEventListenerContainerFactory")
+	public ConcurrentKafkaListenerContainerFactory<String, CategoryUpsertEvent> categoryUpsertEventListenerContainerFactory() {
 		Map<String, Object> properties = getProperties();
-		properties.put(ConsumerConfig.GROUP_ID_CONFIG, categoryCreatedGroupId);
-		ConsumerFactory<String, CategoryCreatedEvent> categoryCreatedEventConsumerFactory = new DefaultKafkaConsumerFactory<>(
-				properties, new StringDeserializer(), new JsonDeserializerWithJTM<CategoryCreatedEvent>());
+		properties.put(ConsumerConfig.GROUP_ID_CONFIG, categoryUpsertGroupId);
+		ConsumerFactory<String, CategoryUpsertEvent> categoryUpsertEventConsumerFactory = new DefaultKafkaConsumerFactory<>(
+				properties, new StringDeserializer(), new JsonDeserializerWithJTM<CategoryUpsertEvent>());
 
-		ConcurrentKafkaListenerContainerFactory<String, CategoryCreatedEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
-		factory.setConsumerFactory(categoryCreatedEventConsumerFactory);
+		ConcurrentKafkaListenerContainerFactory<String, CategoryUpsertEvent> factory = new ConcurrentKafkaListenerContainerFactory<>();
+		factory.setConsumerFactory(categoryUpsertEventConsumerFactory);
 		return factory;
 	}
 
 	@Bean("categoryDeletedEventListenerContainerFactory")
 	public ConcurrentKafkaListenerContainerFactory<String, CategoryDeletedEvent> categoryDeletedEventListenerContainerFactory() {
 		Map<String, Object> properties = getProperties();
-		properties.put(ConsumerConfig.GROUP_ID_CONFIG, userDeletedGroupId);
+		properties.put(ConsumerConfig.GROUP_ID_CONFIG, categoryDeletedGroupId);
 		ConsumerFactory<String, CategoryDeletedEvent> categoryDeletedEventConsumerFactory = new DefaultKafkaConsumerFactory<>(
 				properties, new StringDeserializer(), new JsonDeserializerWithJTM<CategoryDeletedEvent>());
 
