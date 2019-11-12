@@ -1,6 +1,7 @@
 package com.syscom.beans;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -50,4 +51,6 @@ public class User implements Serializable {
 	@Column(name = "U_PASSWORD")
 	private String password;
 
+	@Column(name = "U_BIRTH_DAY")
+	private LocalDate birthDay;
 }

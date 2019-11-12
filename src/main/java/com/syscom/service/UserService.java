@@ -5,10 +5,10 @@ import com.syscom.beans.User;
 public interface UserService {
 
 	/**
-	 * Création d'un nouvel utilisateur.
+	 * Création ou modification d'un utilisateur.
 	 * 
 	 */
-	void create(User user);
+	void upsert(User user);
 
 	/**
 	 * Rechercher un utilisateur à partir d'un login.
@@ -18,5 +18,11 @@ public interface UserService {
 	 */
 	User findByLogin(String login);
 
+	/**
+	 * Suppression d'un utilisateur à partir de son login
+	 * 
+	 * @param login login de l'utilisateur
+	 */
+	void delete(String login);
 
 }

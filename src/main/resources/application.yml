@@ -1,0 +1,27 @@
+logging.level.com.syscom: INFO
+logging.pattern.console: '"%d{yyyy-MM-dd HH:mm:ss} - %msg%n"'
+logging.pattern.file: '"%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"'
+management.endpoints.web.base-path: /manage
+server.port: "8081"
+spring.application.name: users_consumer
+spring.jackson.serialization.write-dates-as-timestamps: false
+spring.messages.cache-duration: "1"
+spring.datasource.driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+spring.datasource.platform: postgres
+spring.datasource.type: com.zaxxer.hikari.HikariDataSource
+spring.datasource.url: jdbc:p6spy:postgresql://localhost:5432/db_users_2
+spring.datasource.username: db_users_2
+spring.datasource.password: db_users_2
+spring.jpa.database: POSTGRESQL
+spring.jpa.show-sql: true
+spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation: true
+spring.kafka.consumer.bootstrap-servers: localhost:9092
+spring.kafka.consumer.properties.spring.json.trusted.packages: '*'
+spring.kafka.consumer.topic.user.upsert: users-upsert
+spring.kafka.consumer.group.user.upsert: users-upsert-group-id
+spring.kafka.consumer.topic.user.deleted: users-deleted
+spring.kafka.consumer.group.user.deleted: users-deleted-group-id
+spring.kafka.consumer.topic.category.upsert: category-upsert
+spring.kafka.consumer.group.category.upsert: category-upsert-group-id
+spring.kafka.consumer.topic.category.deleted: category-deleted
+spring.kafka.consumer.group.category.deleted: category-deleted-group-id
